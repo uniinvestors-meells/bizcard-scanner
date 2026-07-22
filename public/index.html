@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#4F46E5" />
+<title>Card Scanner</title>
+<link rel="manifest" href="/manifest.json" />
+<link rel="apple-touch-icon" href="/icon-192.png" />
+<link rel="icon" href="/icon-192.png" />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<div id="app">
+  <header><h1>📇 Card Scanner</h1></header>
+
+  <input id="file-input" type="file" accept="image/*" capture="environment" class="hidden" />
+
+  <div id="scan-view" class="view">
+    <button id="scan-btn" class="scan-btn">📷 Scan a business card</button>
+  </div>
+
+  <div id="loading-view" class="view hidden">
+    <div class="spinner"></div>
+    <div class="status-text">Reading the card…</div>
+  </div>
+
+  <div id="review-view" class="view hidden">
+    <span id="confidence-badge" class="confidence-badge"></span>
+    <div id="confidence-help" class="confidence-help"></div>
+
+    <form id="review-form">
+      <div class="field">
+        <label for="first_name">First name</label>
+        <input id="first_name" name="first_name" />
+      </div>
+      <div class="field">
+        <label for="last_name">Last name</label>
+        <input id="last_name" name="last_name" />
+      </div>
+      <div class="field">
+        <label for="job_title">Job title</label>
+        <input id="job_title" name="job_title" />
+      </div>
+      <div class="field">
+        <label for="company">Company</label>
+        <input id="company" name="company" />
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" />
+      </div>
+      <div class="field">
+        <label for="phone">Phone (mobile)</label>
+        <input id="phone" name="phone" type="tel" />
+      </div>
+      <div class="field">
+        <label for="phone_work">Work phone</label>
+        <input id="phone_work" name="phone_work" type="tel" />
+      </div>
+      <div class="field">
+        <label for="website">Website</label>
+        <input id="website" name="website" />
+      </div>
+      <div class="field">
+        <label for="address">Address</label>
+        <input id="address" name="address" />
+      </div>
+      <div class="field">
+        <label for="notes">Notes (from card)</label>
+        <textarea id="notes" name="notes"></textarea>
+      </div>
+
+      <div class="field quick-note">
+        <label for="my_note">Quick note → HubSpot timeline</label>
+        <textarea id="my_note" name="my_note" placeholder="Met at the chamber mixer — wants a call next week"></textarea>
+      </div>
+
+      <div id="result-banner" class="result-banner hidden"></div>
+
+      <div class="actions">
+        <button type="submit" id="save-btn" class="primary">💾 Save contact</button>
+        <button type="button" id="vcf-btn" class="secondary hidden">📱 Add to phone contacts anyway</button>
+        <button type="button" id="rescan-btn" class="secondary">🔄 Scan another card</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="hint">Photo → AI reads it → you review → saved to HubSpot + your phone.</footer>
+</div>
+
+<script src="/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+</body>
+</html>

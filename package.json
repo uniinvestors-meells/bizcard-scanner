@@ -1,0 +1,20 @@
+{
+  "name": "bizcard-scanner",
+  "version": "1.0.0",
+  "description": "Phone-first PWA that scans business cards with AI and saves contacts to HubSpot + .vcf",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "optionalDependencies": {
+    "@anthropic-ai/sdk": "^0.32.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
